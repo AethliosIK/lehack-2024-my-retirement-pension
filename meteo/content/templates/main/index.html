@@ -1,0 +1,66 @@
+{% extends 'layouts/default/page.html' %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<div
+  class="max-w-1200 m-auto p-[7vw] items-center pb-10 pt-0 flex flex-col lg:pr-0 lg:pl-0 lg:grid lg:grid-cols-12 lg:gap-x-9 gap-y-5 auto-rows-min"
+>
+  <h1
+    class="text-4xl leading-tight text-center text-scn-blue-800 lg:mb-3 lg:col-span-6 lg:col-start-4"
+  >
+    <span class="font-bold">My retirement pension</span>
+  </h1>
+  <div class="text-center">
+    <p>
+    The government gives you the keys to decipher the impact of the reform on your retirement pension. 
+    </p>
+    <p>
+        The amended Social Security Financing Act for 2023, Act of April 14, 2023, has been published in the Official Journal. It will come into force on September 1, 2023.
+    </p>
+    <p>
+        In one click, artificial intelligence via blockchain and NFT will determine in real time and definitively until when you will work before receiving your retirement pension.
+    </p>
+    <p style="color: grey">
+      For (real) information on the main measures affecting the French people, see <a href="https://la-reforme-des-retraites-et-moi.fr" class="">this (real) page.</a> and <a href="https://www.mediapart.fr/journal/economie-et-social/200323/reforme-des-retraites-les-points-clefs-de-la-version-finale">this other (real) resource</a>.
+    </p>
+  </div>
+  <div
+    class="bg-white rounded-md max-w-[582px] pb-7 lg:col-span-6 lg:col-start-4 min-h-min layout-form"
+    data-v-8218032c=""
+  >
+    <div class="text-center text-xs text-scn-blue-800 pt-5">
+      <span class="font-bold">STEP 1/1</span> —
+      <span class="uppercase">Your situation</span>
+    </div>
+    <div class="text-center">
+      <h2>
+        Have you been wise in recent years?
+      </h2>
+      <form method="POST" novalidate="" class="flex flex-col gap-3">
+        {% csrf_token %}
+        <div>
+            <label>
+                <input type="radio" name="choice" id="choice1" value="0" />
+                No way
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="choice" id="choice2" value="1" />
+                Yes, don't you think ?
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="choice" id="choice3" value="2" />
+                Yes, very much so
+            </label>
+        </div>
+        <button class="btn-primary m-auto mt-4">Next step</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% else %}
+<b>Please login or register</b>
+{% endif %}
+{% endblock %}

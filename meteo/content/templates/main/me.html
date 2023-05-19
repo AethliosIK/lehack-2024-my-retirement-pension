@@ -1,0 +1,27 @@
+{% extends 'layouts/default/page.html' %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<div
+  class="max-w-1200 m-auto p-[7vw] items-center pb-10 pt-0 flex flex-col lg:pr-0 lg:pl-0 lg:grid lg:grid-cols-12 lg:gap-x-9 gap-y-5 auto-rows-min"
+>
+  <h1
+    class="text-4xl leading-tight text-center text-scn-blue-800 lg:mb-3 lg:col-span-6 lg:col-start-4"
+  >
+    <span class="font-bold">My retirement pension</span>
+  </h1>
+  <div class="text-center">
+    <p>
+      After multiple and thorough researches thanks to a totally impartial and objective artificial intelligence, the decision can not be contested, here is the age of departure to the retirement:
+    </p>
+    <h2>
+      {% if retirement < 64 %} {{ flag }} {% elif retirement >= 64 %} {{ retirement }} {% else %} <a href="/">See this page</a>{% endif %}
+    </h2>
+    <p>
+      It's the AI that says it, not us, and then you have to be able to pay back the state's debt anyway.
+    </p>
+  </div>
+</div>
+{% else %}
+<b>Please login or register</b>
+{% endif %}
+{% endblock %}

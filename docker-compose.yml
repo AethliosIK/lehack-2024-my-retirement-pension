@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  mariadb:
+    image: mariadb:10.10.2
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWD}
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      #- db:/var/lib/mysql
+      - ./_data:/var/lib/mysql
+    networks:
+      - meteo
+
+  meteo:
+    build:
+      dockerfile: Dockerfile
+      context: meteo
+    depends_on:
+      - mariadb
+    environment:
+      - WAIT_HOSTS=mariadb:3306
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWD=${DB_PASSWD}
+      - DB_HOST=${DB_HOST}
+      - PYTHONUNBUFFERED=1
+      - DISABLE_CACHING=0
+    volumes:
+      - ./meteo:/code/
+    ports:
+      - 8000:8000
+    networks:
+      - meteo
+
+  chatgpt:
+    hostname: chatgpt.local
+    depends_on:
+      - mariadb
+    build:
+      dockerfile: Dockerfile
+      context: chatgpt
+    environment:
+      - WAIT_HOSTS=mariadb:3306
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWD=${DB_PASSWD}
+      - DB_HOST=${DB_HOST}
+      - PYTHONUNBUFFERED=1
+      - DISABLE_CACHING=0
+    volumes:
+      - ./chatgpt:/code/
+    networks:
+      - meteo
+
+networks:
+  meteo:
+    name: "meteo"
