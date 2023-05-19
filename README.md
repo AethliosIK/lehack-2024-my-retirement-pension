@@ -1,2 +1,37 @@
-# lehack-2023-my-retirement-pension
- A web challenge of the wargame (public CTF) of the 2023 edition of the Hack 
+### My Retirement Pension - LeHack 2023
+
+Here is the code of a challenges I provided for the Wargame (Public CTF) of the 2023 edition of the Hack which took place from June 30th to July 2nd.
+You are now able to inspect the code and replay the challenge locally if you wish.
+
+- Description : A new retirement pension reform is underway that will allow the state to save money through "artificial intelligence", however, it seems that a vulnerability will thwart it.
+- Category : Web
+- Difficulty: Easy / Medium
+
+### Start Guide :
+
+```bash
+cd lehack-2023-my-retirement-pension
+cp .env.sample .env
+docker-compose up -d
+# Go to http://localhost:8000
+```
+
+### .env:
+
+```bash
+DB_USERNAME=<Your Value>
+DB_PASSWD=<Your Value>
+DB_HOST=<Your Value>
+DB_NAME=<Your Value>
+```
+
+### Solution - poc.py
+
+<details>
+  <summary>Spoiler warning</summary>
+  
+  It seems that a modification of the URL of the request sent on the server side is possible on the `uuid` cookie, allowing to modify the value `retirement` and to modify the age of its retirement.
+ 
+ - See the PoC file 
+  
+</details>
