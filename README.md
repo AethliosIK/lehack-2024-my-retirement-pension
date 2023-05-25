@@ -3,16 +3,19 @@
 Here is the code of a challenges I provided for the Wargame (Public CTF) of the 2023 edition of the Hack which took place from June 30th to July 2nd.
 You are now able to inspect the code and replay the challenge locally if you wish.
 
-- Description : A new retirement pension reform is underway that will allow the state to save money through "artificial intelligence", however, it seems that a vulnerability will thwart it.
+- Description : A new retirement pension reform is underway that will allow the state to save money through "artificial intelligence", however, it seems that a vulnerability will thwart it (and gain a few years' respite...).
 - Category : Web
-- Difficulty: Easy / Medium
+- Difficulty: Medium / Hard
 
 ### Start Guide :
 
 ```bash
 cd lehack-2023-my-retirement-pension
 cp .env.sample .env
-docker-compose up -d
+docker-compose build
+docker-compose up -d && sleep 10
+docker-compose run meteo python3 manage.py migrate
+docker-compose run chatgpt python3 manage.py migrate
 # Go to http://localhost:8000
 ```
 
@@ -23,6 +26,7 @@ DB_USERNAME=<Your Value>
 DB_PASSWD=<Your Value>
 DB_HOST=<Your Value>
 DB_NAME=<Your Value>
+DOMAIN_URL=<Your Value>
 ```
 
 ### Solution - poc.py

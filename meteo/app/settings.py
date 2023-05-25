@@ -2,7 +2,8 @@ import os
 from os.path import dirname
 from django.utils.translation import gettext_lazy as _
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "meteo").split(",")
+CSRF_TRUSTED_ORIGINS = os.environ.get("DOMAIN_URL", "http://localhost:8000").split(",")
 
 BASE_DIR = dirname(dirname(os.path.abspath(__file__)))
 CONTENT_DIR = os.path.join(BASE_DIR, "content")
@@ -97,24 +98,17 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 TIME_ZONE = "UTC"
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(CONTENT_DIR, "static")
+STATIC_ROOT = "/static"
 STATIC_URL = "/static/"
-
-MEDIA_ROOT = os.path.join(CONTENT_DIR, "media")
-MEDIA_URL = "/media/"
 
 STATICFILES_DIRS = [
     os.path.join(CONTENT_DIR, "assets"),
 ]
-
-LOCALE_PATHS = [os.path.join(CONTENT_DIR, "locale")]
 
 SIGN_UP_FIELDS = ["username", "password1", "password2"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
-
-API_TOKEN = "d29jY21jNWg5ZTNqeG5nYTo1cGNlenUyZnI4NzZmeDU3"
 
 FLAG = "lh2023{5pXQCuV4EjvZA7JAyYWs6CUrF2R8aL9G}"

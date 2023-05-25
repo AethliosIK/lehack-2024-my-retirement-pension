@@ -1,4 +1,4 @@
-FROM python:3.9.16-bullseye
+FROM python:3.9.16-slim
 
 RUN apt update && apt upgrade -y
 RUN apt install -y rsync gcc python3-dev \
@@ -12,6 +12,6 @@ WORKDIR /code/
 COPY Pipfile ./
 COPY Pipfile.lock ./
 RUN pipenv install --dev --system && rm -rf ~/.cache/
-COPY manage.py content ./
+COPY manage.py ./
 
 CMD /wait && python3 ./manage.py runserver 0.0.0.0:8000

@@ -28,8 +28,12 @@ class LogInView(GuestOnlyView, FormView):
         return SignInViaUsernameForm
 
     def form_valid(self, form):
-        request = self.request
-        login(request, form.user_cache)
+        username, password = form.cleaned_data.get("username"), form.cleaned_data.get(
+            "password"
+        )
+        new_user = authenticate(username=username, password=password)
+        if new_user:
+            login(self.request, new_user)
         return redirect("/")
 
     def post_login(sender, user, request, response, **kwargs):

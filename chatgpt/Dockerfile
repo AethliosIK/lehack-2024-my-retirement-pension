@@ -1,4 +1,4 @@
-FROM python:3.9.16-bullseye
+FROM python:3.9.16-slim
 
 RUN apt update && apt upgrade -y
 RUN apt install -y rsync gcc python3-dev \
