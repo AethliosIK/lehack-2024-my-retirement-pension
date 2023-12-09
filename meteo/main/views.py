@@ -2,7 +2,8 @@ from django.views.generic import TemplateView, View
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+
 import requests
 
 from app.settings import FLAG
@@ -23,12 +24,15 @@ class IndexPageView(TemplateView):
             params={"retirement": 64, "choice": value},
         )
         if not r.ok:
-            headers = "\n".join(
-                [f"{e}: {r.request.headers[e]}" for e in r.request.headers]
-            )
-            return HttpResponse(
-                f"Error detected in {r.request.url}\n\nDEBUG Headers:\n\n{headers}",
-                content_type="text/plain",
+            headers = {e.lower(): r.request.headers[e] for e in r.request.headers}
+            return JsonResponse(
+                {
+                    "error": True,
+                    "response": r.text,
+                    "url": r.request.url,
+                    "headers": headers,
+                },
+                status=400,
             )
         return redirect("/me")
 
@@ -45,12 +49,15 @@ class RetirementPageView(View):
         retirement = None
 
         if not r.ok:
-            headers = "\n".join(
-                [f"{e}: {r.request.headers[e]}" for e in r.request.headers]
-            )
-            return HttpResponse(
-                f"Error detected in {r.request.url}\n\nDEBUG Headers:\n\n{headers}",
-                content_type="text/plain",
+            headers = {e.lower(): r.request.headers[e] for e in r.request.headers}
+            return JsonResponse(
+                {
+                    "error": True,
+                    "response": r.text,
+                    "url": r.request.url,
+                    "headers": headers,
+                },
+                status=400,
             )
         retirement = r.json()["retirement"]
         return render(
