@@ -1,6 +1,6 @@
-### My Retirement Pension - LeHack 2023
+### My Retirement Pension - LeHack 2024
 
-Here is the code of a challenges I provided for the Wargame (Public CTF) of the 2023 edition of the Hack which took place from June 30th to July 2nd.
+Here is the code of a challenges I provided for the Wargame (Public CTF) of the 2024 edition of the Hack which took place from July 5th to 7th.
 You are now able to inspect the code and replay the challenge locally if you wish.
 
 - Description : A new retirement pension reform is underway that will allow the state to save money through "artificial intelligence", however, it seems that a vulnerability will thwart it (and gain a few years' respite...).
