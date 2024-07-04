@@ -4,7 +4,7 @@ import random
 import requests
 
 REGEX_CSRF = '<input type="hidden" name="csrfmiddlewaretoken" value="(.*)">'
-REGEX_FLAG = "lh2023\{(.*)\}"
+REGEX_FLAG = "lh2024\{(.*)\}"
 URL_DOMAIN = "http://localhost:8000"
 USERNAME = "test" + str(random.randint(0, 999999))
 PASSWORD = "Password123@"
