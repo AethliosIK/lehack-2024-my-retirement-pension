@@ -111,4 +111,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-FLAG = "lh2023{5pXQCuV4EjvZA7JAyYWs6CUrF2R8aL9G}"
+FLAG = "lh2024{5pXQCuV4EjvZA7JAyYWs6CUrF2R8aL9G}"
