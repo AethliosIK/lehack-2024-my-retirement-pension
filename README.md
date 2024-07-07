@@ -10,7 +10,7 @@ You are now able to inspect the code and replay the challenge locally if you wis
 ### Start Guide :
 
 ```bash
-cd lehack-2023-my-retirement-pension
+cd lehack-2024-my-retirement-pension
 cp .env.sample .env
 docker-compose build
 docker-compose up -d && sleep 10
